@@ -1,0 +1,29 @@
+li.small-image{
+	width: 20%;
+}
+.rating-container .clear-rating,
+.rating-container .caption{
+	display:none !important;
+}
+hr{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border-color: #999;
+}
+.ma{
+	margin-right: auto;
+    margin-left: auto;
+}
+.thumbnail{
+	position: relative;
+}
+.desconto{
+	position: absolute;
+    right: 0;
+}
+.ng-invalid .ng-dirty{
+	border-color: #fa787e;
+}
+.ng-valid.ng-dirty{
+	border-color: #78fa89;
+}

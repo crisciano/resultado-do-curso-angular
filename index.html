@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/star-rating.min.css">
+	<link rel="stylesheet" href="css/custom.css">
+	
+</head>
+<body>
+	<section>
+		<div class="container">
+			<div class="row">
+				<h1 class="text-center">Produtos</h1>
+			</div>
+		</div>
+	</section>
+	<section>
+		<div class="container">
+			<div class="row" ng-controller="StoreController as store">
+				<div class="col-sm-4" ng-repeat="product in store.products | orderBy: '+price'">
+					<div class="thumbnail">
+						<div class="desconto" ng-show="product.checkedDesconto">
+							<div class="col-sm-4 col-xs-6 pull-right">
+								<img ng-src="{{product.desconto}}" alt="" class="img-responsive">
+							</div>
+						</div>
+						<img class="img-responsive" ng-src="{{product.images[0]}}">
+						<ul class="list-inline img-thumbnails clearfix" ng-show="product.images.length">
+							<li class="small-image thumbnail" ng-repeat="image in product.images">
+								<img class="img-responsive" ng-src="{{image}}">
+							</li>
+						</ul>
+
+						<div class="caption">
+							<product-details></product-details>
+							<!--<div ng-include="'theme/product.html'"></div>-->
+							<!--<h4>{{product.title}}</h4>
+							<p>${{product.price}}</p> -->
+							<product-panels>
+								<!--<ul class="nav nav-pills">
+									<li ng-class="{active: panel.isSelected(1)}"><a href ng-click="panel.selectTab(1)">descricao</a></li>
+									<li ng-class="{active: panel.isSelected(2)}"><a href ng-click="panel.selectTab(2)">estatisticas</a></li>
+									<li ng-class="{active: panel.isSelected(3)}"><a href ng-click="panel.selectTab(3)">review</a></li>
+								</ul>
+								<div class="panel" ng-show="panel.isSelected(1)">
+									<h4>description</h4>
+									<blockquote> {{product.description}} </blockquote>
+								</div>
+								<div class="panel" ng-show="panel.isSelected(2)">
+									<h4>especificações</h4>
+									<blockquote>{{product.specific}}</blockquote>
+								</div>
+								<div class="panel" ng-show="panel.isSelected(3)">
+
+									<div ng-show="panel.isSelected(3)">
+										<blockquote ng-repeat="review in product.reviews">
+											<b>{{review.stars}} stars </b>
+											{{review.body}}<hr/>
+											<cite>by: {{review.author}} - {{review.createdOn | date}}</cite>
+										</blockquote>
+										<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewForm.$valid && reviewCtrl.addReview(product)" novalidate>
+											<div class="form-group">
+												<select class="form-control ng-dirty" ng-model="reviewCtrl.review.stars" required>
+													<option value="1">1 star</option>
+													<option value="2">2 stars</option>
+													<option value="3">3 stars</option>
+													<option value="4">4 stars</option>
+													<option value="5">5 stars</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<textarea class="form-control ng-dirty" ng-model="reviewCtrl.review.body" placeholder="review" required></textarea>
+											</div>
+											<div class="form-group">
+												<input class="form-control ng-dirty" type="email" placeholder="email" ng-model="reviewCtrl.review.author" required>
+											</div>
+											<div> reviewForm id {{reviewForm.$valid}}</div>
+											<input type="submit" value="submit">
+										</form>
+										
+									</div>
+								</div> -->
+							</product-panels>
+							<button class="btn btn-primary" ng-show="product.canPurchase">Add to Cart</button>
+							
+									<!--<blockquote>
+										<b>{{review.stars}} Stars</b>
+										{{review:body}}
+										<cite>by - {{review.author}}</cite>
+									</blockquote> -->
+								<!--<form name="reviewForm" ng-controller="ReviewController as reviewCtrl" ng-submit="reviewCtrl.addReview(product)">
+									<div class="form-group">
+										<select class="form-control" ng-model="reviewCtrl.review.stars">
+											<option value="1">1 star</option>
+											<option value="2">2 stars</option>
+											<option value="3">3 stars</option>
+											<option value="4">4 stars</option>
+											<option value="5">5 stars</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<textarea class="form-control" ng-model="reviewCtrl.review.body" placeholder="review"></textarea>
+									</div>
+									<div class="form-group">
+										<input class="form-control" type="email" placeholder="email" ng-model="reviewCtrl.review.author">
+									</div>
+									<input type="submit" value="submit">
+								</form> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--<section>
+		<div class="container">
+			<div class="row">
+					<blockquote>
+						<b>{{review.stars}} Stars</b>
+						{{review:body}}
+						<cite>by: {{review.author}}</cite>
+					</blockquote> 
+				<form name="reviewForm">
+					<select ng-model="review.stars">
+						<option value="1">1 star</option>
+						<option value="2">2 stars</option>
+						<option value="3">3 stars</option>
+						<option value="4">4 stars</option>
+						<option value="5">5 stars</option>
+					</select>
+					<textarea ng-model="review:body"></textarea>
+					<input type="email" ng-model="review.author">
+					<input type="submit" value="submit">
+				</form>
+			</div>
+		</div>
+	</section> -->
+
+	<!--<section ng-controller="CarouselController as carousel">
+		<div class="container">
+			<div class="row">
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+				  
+				  <ol class="carousel-indicators">
+				    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+				  </ol>
+
+				  
+				  <div class="carousel-inner" role="listbox" ng-controller="AtivoController as ativo">
+				    <div class="item" ng-class="{ativo: isCheck(1)}" ng-repeat="image in carousel.images">
+				      <img class"img-responsive ma" ng-src="{{image}}" alt="...">
+				    </div>
+				  </div>
+
+				  
+				  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				    <span class="sr-only">Previous</span>
+				  </a>
+				  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				    <span class="sr-only">Next</span>
+				  </a>
+				</div>
+				
+			</div>
+		</div>
+	</section> -->
+	
+	<script src="node_modules/angular/angular.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/product.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
+	<script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="node_modules/angular-bootstrap/ui-bootstrap.min.js"></script>
+	<script src="js/star-rating.min.js"></script>
+	<script>
+		//$('.rating').rating({'size':'xs'});
+	</script>
+</body>
+</html>
